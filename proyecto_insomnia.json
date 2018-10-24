@@ -1,0 +1,287 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-10-24T23:03:36.497Z",
+	"__export_source": "insomnia.desktop.app:v6.0.2",
+	"resources": [
+		{
+			"_id": "wrk_7cf320594c5945478be83ad49df84910",
+			"created": 1522751806812,
+			"description": "",
+			"modified": 1540291096426,
+			"name": "TOC API",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_ef1ed3da63464817bac537313d76bcaa",
+			"color": null,
+			"created": 1522751806916,
+			"data": {
+				"baseuRL": "http://localhost:3000/",
+				"clientID": "x568hv1fgFUsSilzptJfCTbNfT0rv4YU",
+				"password": "tocisawesome2018$",
+				"username": "nicolasavila.a@gmail.com"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1540291110548,
+			"modified": 1540325118354,
+			"name": "New Environment",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_d5ce223301104d8bb6600176cb7bc1cc",
+			"cookies": [],
+			"created": 1522751806921,
+			"modified": 1522751806921,
+			"name": "Default Jar",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"created": 1523359583617,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1523359583617,
+			"modified": 1523359583617,
+			"name": "Usuarios",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_c58bf0f126fa4a248c4f89217bb6172f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"grant_type\": \"http://auth0.com/oauth/grant-type/password-realm\",\n\t\"realm\": \"Username-Password-Authentication\",\n\t\"username\": \"{{ username  }}\",\n\t\"password\": \"{{ password  }}\", \n\t\"scope\": \"openid\", \n\t\"client_id\": \"{{ clientID }}\"\n}"
+			},
+			"created": 1522753156703,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_2c8be9a89da94169ace08f45118c18e6",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525402563014,
+			"method": "POST",
+			"modified": 1540422006314,
+			"name": "Token Autorizacion",
+			"parameters": [],
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://navila.auth0.com/oauth/token",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8e908eb232194616801a93150489d2f4",
+			"authentication": {
+				"prefix": "",
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$[\"id_token\"]' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1522781951707,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1520920717403,
+			"method": "GET",
+			"modified": 1540422197131,
+			"name": "Listar Usuarios",
+			"parameters": [],
+			"parentId": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b2020d3749a2470baa0575def5423cdf",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523361001579,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1520920717378,
+			"method": "GET",
+			"modified": 1540422033579,
+			"name": "Obtiene Usuario",
+			"parameters": [],
+			"parentId": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_46030b59087b409693ddd5676031a0c8",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"id": "pair_bb3b2835ae9547de8baf77feeeaf3011",
+						"name": "given_name",
+						"value": "Diego"
+					},
+					{
+						"id": "pair_2dfdf671eab24b41ae3e27609d4a7276",
+						"name": "family_name",
+						"value": "de la Cruz"
+					},
+					{
+						"id": "pair_4e0bf03caea84133ac9b79b4b7468dbb",
+						"name": "auth0_id",
+						"value": "auth0|asda87364hjasd"
+					},
+					{
+						"id": "pair_f589c87069774fc8b706e0cbb4d8fdda",
+						"name": "active",
+						"value": "1"
+					}
+				]
+			},
+			"created": 1540311987943,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9e66391716f74c5a9714ee10548a4d8f",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1520005148654,
+			"method": "POST",
+			"modified": 1540422075319,
+			"name": "Crea un Usuario",
+			"parameters": [],
+			"parentId": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios/",
+			"_type": "request"
+		},
+		{
+			"_id": "req_efedbc7f846847a8ad091264246ce19f",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"id": "pair_bb3b2835ae9547de8baf77feeeaf3011",
+						"name": "given_name",
+						"value": "Diegoooooo"
+					},
+					{
+						"id": "pair_2dfdf671eab24b41ae3e27609d4a7276",
+						"name": "family_name",
+						"value": "de la Cruz"
+					},
+					{
+						"id": "pair_4e0bf03caea84133ac9b79b4b7468dbb",
+						"name": "auth0_id",
+						"value": "auth0|asda87364hjasd"
+					},
+					{
+						"id": "pair_f589c87069774fc8b706e0cbb4d8fdda",
+						"name": "active",
+						"value": "0"
+					}
+				]
+			},
+			"created": 1540312099874,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9e66391716f74c5a9714ee10548a4d8f",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1519547364292,
+			"method": "PUT",
+			"modified": 1540422117585,
+			"name": "Edita un Usuario",
+			"parameters": [],
+			"parentId": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_0663db9140c34e02976a13560e95e9a0",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1540422129350,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9e66391716f74c5a9714ee10548a4d8f",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1519318472111,
+			"method": "DELETE",
+			"modified": 1540422157730,
+			"name": "Elimina un Usuario",
+			"parameters": [],
+			"parentId": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios/2",
+			"_type": "request"
+		}
+	]
+}
